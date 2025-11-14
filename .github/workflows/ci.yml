@@ -1,4 +1,4 @@
-name: CI - C++ Build (Visual Studio 2022)
+name: CI - Build C++ (Visual Studio 2022)
 
 on:
   push:
@@ -10,11 +10,6 @@ jobs:
   build:
     runs-on: windows-2022
 
-    strategy:
-      matrix:
-        platform: [Win32, x64]
-        config: [Debug, Release]
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -22,24 +17,16 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
 
-      - name: Cache MSBuild
-        uses: actions/cache@v4
-        with:
-          path: |
-            **/ipch/
-            **/Intermediate/
-          key: msbuild-${{ matrix.platform }}-${{ matrix.config }}-${{ hashFiles('**/*.vcxproj') }}
-
       - name: Build solution
         run: |
-          msbuild "ProyectoEstructurasDatos.sln" /p:Configuration=${{ matrix.config }} /p:Platform=${{ matrix.platform }}
+          msbuild "ProyectoEstructurasDatos.sln" /p:Configuration=Release
 
-      - name: Upload Artifacts
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: build-${{ matrix.platform }}-${{ matrix.config }}
+          name: build-artifacts
           path: |
-            **/${{ matrix.platform }}/${{ matrix.config }}/*.exe
-            **/${{ matrix.platform }}/${{ matrix.config }}/*.dll
-            **/${{ matrix.config }}/*.exe
-            **/${{ matrix.config }}/*.dll
+            **/Release/*.exe
+            **/Release/*.dll
+            **/x64/Release/*.exe
+            **/x64/Release/*.dll
