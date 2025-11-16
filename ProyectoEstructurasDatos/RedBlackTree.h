@@ -1,11 +1,11 @@
 #pragma once
 #include <map>
+#include <vector>
 #include "Usuario.h"
 using namespace std;
 
 /*
-  RedBlackTree: wrapper sobre std::map<int, Usuario>
-  std::map suele estar implementado como árbol rojo-negro => garantiza log(n) en búsquedas/inserciones.
+  Wrapper simple sobre std::map<int, Usuario> (std::map suele ser RB-tree).
 */
 class RedBlackTree {
 private:
@@ -29,4 +29,8 @@ public:
     }
 
     void clear() { arbol.clear(); }
+
+    bool erase(int id) {
+        return arbol.erase(id) > 0;
+    }
 };

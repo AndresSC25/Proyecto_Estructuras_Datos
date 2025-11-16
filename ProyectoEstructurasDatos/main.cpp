@@ -20,6 +20,13 @@ void mostrarMenu() {
     cout << "9. Cargar datos desde archivos (txt)\n";
     cout << "10. Agregar relacion de recomendacion\n";
     cout << "11. Ver recomendaciones para ISBN\n";
+    cout << "12. Modificar libro\n";
+    cout << "13. Eliminar libro\n";
+    cout << "14. Modificar usuario\n";
+    cout << "15. Eliminar usuario\n";
+    cout << "16. Marcar prestamo como devuelto\n";
+    cout << "17. Eliminar prestamo (registro)\n";
+    cout << "18. Eliminar relacion de recomendacion\n";
     cout << "0. Salir\n";
     cout << "Selecciona una opcion: ";
 }
@@ -48,6 +55,7 @@ int main() {
     // Intentar cargar datos al iniciar (si existen)
     bib.cargarLibros();
     bib.cargarUsuarios();
+    bib.cargarPrestamos();
 
     while (true) {
         mostrarMenu();
@@ -120,6 +128,8 @@ int main() {
             else cout << "Error guardando libros\n";
             if (bib.guardarUsuarios()) cout << "Usuarios guardados en usuarios.txt\n";
             else cout << "Error guardando usuarios\n";
+            if (bib.guardarPrestamos()) cout << "Prestamos guardados en prestamos.txt\n";
+            else cout << "Error guardando prestamos\n";
             break;
         }
         case 9: {
@@ -127,6 +137,8 @@ int main() {
             else cout << "No se pudo cargar libros (archivo faltante o formato invalido)\n";
             if (bib.cargarUsuarios()) cout << "Usuarios cargados desde usuarios.txt\n";
             else cout << "No se pudo cargar usuarios\n";
+            if (bib.cargarPrestamos()) cout << "Prestamos cargados desde prestamos.txt\n";
+            else cout << "No se pudo cargar prestamos\n";
             break;
         }
         case 10: {
@@ -150,6 +162,55 @@ int main() {
             }
             break;
         }
+        case 12: { // modificar libro
+            string isbn = leerLinea("ISBN a modificar: ");
+            string titulo = leerLinea("Nuevo titulo: ");
+            string autor = leerLinea("Nuevo autor: ");
+            string categoria = leerLinea("Nueva categoria: ");
+            string disp = leerLinea("Disponible? (1=si/0=no): ");
+            bool disponible = (disp == "1");
+            Libro nuevo(isbn, titulo, autor, categoria);
+            nuevo.disponible = disponible;
+            bib.modificarLibro(isbn, nuevo);
+            break;
+        }
+        case 13: {
+            string isbn = leerLinea("ISBN a eliminar: ");
+            bib.eliminarLibro(isbn);
+            break;
+        }
+        case 14: { // modificar usuario
+            cout << "ID usuario a modificar: ";
+            int id = leerEntero();
+            string nombre = leerLinea("Nuevo nombre: ");
+            string email = leerLinea("Nuevo email: ");
+            Usuario u(id, nombre, email);
+            bib.modificarUsuario(id, u);
+            break;
+        }
+        case 15: {
+            cout << "ID usuario a eliminar: ";
+            int id = leerEntero();
+            bib.eliminarUsuario(id);
+            break;
+        }
+        case 16: {
+            string idp = leerLinea("ID prestamo a marcar como devuelto: ");
+            bib.marcarComoDevuelto(idp);
+            break;
+        }
+        case 17: {
+            string idp = leerLinea("ID prestamo a eliminar: ");
+            bib.eliminarPrestamo(idp);
+            break;
+        }
+        case 18: {
+            string a = leerLinea("ISBN origen (A): ");
+            string b = leerLinea("ISBN a quitar de recomendaciones (B): ");
+            bib.eliminarRelacionRecomendacion(a, b);
+            cout << "Relacion eliminada (si existia)\n";
+            break;
+        }
         default:
             cout << "Opcion invalida\n";
         }
@@ -158,6 +219,7 @@ int main() {
     // Al salir, guardar datos
     bib.guardarLibros();
     bib.guardarUsuarios();
+    bib.guardarPrestamos();
     cout << "Saliendo... datos guardados.\n";
     return 0;
 }

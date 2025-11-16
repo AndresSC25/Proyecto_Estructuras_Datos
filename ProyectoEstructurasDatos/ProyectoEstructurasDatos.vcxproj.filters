@@ -63,5 +63,6 @@
   <ItemGroup>
     <Text Include="libros.txt" />
     <Text Include="usuarios.txt" />
+    <Text Include="prestamos.txt" />
   </ItemGroup>
 </Project>

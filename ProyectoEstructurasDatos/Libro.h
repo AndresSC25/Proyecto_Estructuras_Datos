@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -19,14 +20,12 @@ struct Libro {
     string serialize() const {
         // formato: ISBN|titulo|autor|categoria|disponible
         stringstream ss;
-        ss << ISBN << "|" << titulo << "|" << autor << "|" << categoria << "|"
-            << (disponible ? "1" : "0");
+        ss << ISBN << "|" << titulo << "|" << autor << "|" << categoria << "|" << (disponible ? "1" : "0");
         return ss.str();
     }
 
     static Libro deserialize(const string& line) {
         Libro l;
-        string token;
         vector<string> parts;
         string cur;
         for (char ch : line) {

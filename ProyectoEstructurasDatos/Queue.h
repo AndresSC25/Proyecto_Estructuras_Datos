@@ -12,4 +12,5 @@ public:
     T front() const { return q.front(); }
     bool empty() const { return q.empty(); }
     size_t size() const { return q.size(); }
+    void clear() { while (!q.empty()) q.pop(); }
 };

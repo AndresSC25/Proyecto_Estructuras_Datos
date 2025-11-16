@@ -1,14 +1,14 @@
 #pragma once
 #include <map>
+#include <vector>
 #include <string>
 #include "Libro.h"
+
 using namespace std;
 
 /*
-  Implementación simplificada de un índice tipo B+:
-  - Usa std::map<string, Libro> como índice ordenado por ISBN.
-  - Soporta insertar, buscar por ISBN y búsqueda por rango (prefijo de título si se desea).
-  NOTA: Si quieres, puedo extender esto a un B+ real con nodos hoja/splits.
+  Simplified B+ style wrapper using std::map keyed by ISBN.
+  Supports insert, buscar por ISBN, listar, buscar por prefijo de titulo, borrar.
 */
 class BPlusTree {
 private:
@@ -26,7 +26,7 @@ public:
         return nullptr;
     }
 
-    // Buscar por rango de título (prefijo) — ejemplo útil para "buscar por título"
+    // Buscar por rango de título (prefijo)
     vector<Libro*> buscarPorTituloPrefijo(const string& prefijo) {
         vector<Libro*> res;
         for (auto it = indice.begin(); it != indice.end(); ++it) {
@@ -51,4 +51,8 @@ public:
     }
 
     void clear() { indice.clear(); }
+
+    bool erase(const string& isbn) {
+        return indice.erase(isbn) > 0;
+    }
 };
