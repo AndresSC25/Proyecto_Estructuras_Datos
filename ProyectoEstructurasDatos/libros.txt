@@ -1,3 +1,20 @@
-20|20|20|20|1
-2020|100 annos de soledad|Piter|Romantica|1
-202020|202020|202020|202020|0
+1001|El Hobbit|Tolkien|Fantasia|1
+1002|El Señor de los Anillos|Tolkien|Fantasia|1
+1003|Silmarillion|Tolkien|Fantasia|1
+2001|Dune|Frank Herbert|Ciencia Ficcion|1
+2002|Dune Messiah|Frank Herbert|Ciencia Ficcion|1
+2003|Children of Dune|Frank Herbert|Ciencia Ficcion|1
+3001|Fundacion|Isaac Asimov|Ciencia Ficcion|1
+3002|Fundacion e Imperio|Isaac Asimov|Ciencia Ficcion|1
+3003|Segunda Fundacion|Isaac Asimov|Ciencia Ficcion|1
+4001|It|Stephen King|Terror|1
+4002|El Resplandor|Stephen King|Terror|1
+4003|Cementerio de Animales|Stephen King|Terror|1
+5001|Cien Anos de Soledad|Gabriel Garcia Marquez|Realismo Magico|1
+5002|El Amor en los Tiempos del Colera|Gabriel Garcia Marquez|Realismo Magico|1
+6001|Cronicas Marcianas|Ray Bradbury|Ciencia Ficcion|1
+6002|Fahrenheit 451|Ray Bradbury|Ciencia Ficcion|1
+7001|1984|George Orwell|Distopia|1
+7002|Rebelion en la Granja|George Orwell|Distopia|1
+8001|El Alquimista|Paulo Coelho|Filosofia|1
+8002|Brida|Paulo Coelho|Filosofia|1
